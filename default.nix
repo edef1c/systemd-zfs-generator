@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   systemd.generators.systemd-zfs-generator = pkgs.substituteAll {
     name = "systemd-zfs-generator";
@@ -6,4 +6,5 @@
     inherit (pkgs) bash gawk zfs systemd busybox;
     isExecutable = true;
   };
+  systemd.services.zfs-mount.enable = lib.mkForce false;
 }
